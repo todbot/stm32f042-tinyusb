@@ -19,10 +19,11 @@ Steps:
   - Enable "USB global interrupt" in Connectivity->USB->NVIC
   - Generate code
 - In generated code project dir:
-  - `cd Drivers && git submodule add --depth 1 https://github.com/hathach/tinyusb/`
-- Code :
-  - create "Core/Src/usb_descriptors.c"  *(copy from a tinyusb example)*
-  - create "Core/Inc/tusb_config.h"  *(copy from a tinyusb example)*
+  - add tinyusb: `cd Drivers && git submodule add --depth 1 https://github.com/hathach/tinyusb/`
+  - convert from DOS format: `dos2unix * Core/**/*`
+- Code changes:
+  - create "Core/Src/usb_descriptors.c"  *(copy from a tinyusb hid_generic_inout example & tweak)*
+  - create "Core/Inc/tusb_config.h"  *(copy from a tinyusb hid_generic_inout example & tweak)*
   - modify "Core/Src/stm32f0xx_it.c"
     - add `tud_int_handler(0)` to `USB_IRQ_Handler()`
   - modify "Core/Src/main.c":
@@ -31,9 +32,11 @@ Steps:
     - add `tud_hid_get_report_cb()` and `tud_hid_get_report_cb()` callback functions 
       (for HID devices, other USB classes will have other callbacks)
   - modify "Makefile":
-    - add `-DCFG_TUSB_MCU=OPT_MCU_STM32F0` to `C_DEFS`
-    - add `-IDrivers/tinyusb/src` to `C_INCLUDES`
+    - add `usb_descriptors.c` to `C_SOURCES`
+    - add `Core/Src/syscalls.c` to `C_SOURCES` since STM forgot
     - add `Drivers/tinyusb/*` source files to `C_SOURCES` (depends on your app)
+    - add `-IDrivers/tinyusb/src` to `C_INCLUDES`
+    - add `-DCFG_TUSB_MCU=OPT_MCU_STM32F0` to `C_DEFS`
 
 This repo is the result of those changes.
 
