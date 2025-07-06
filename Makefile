@@ -61,7 +61,6 @@ Drivers/stm32f0xx-hal-driver/Src/stm32f0xx_hal_pcd_ex.c \
 Core/Src/system_stm32f0xx.c \
 Drivers/tinyusb/src/class/vendor/vendor_device.c \
 Drivers/tinyusb/src/class/hid/hid_device.c \
-Drivers/tinyusb/src/class/hid/hid_host.c \
 Drivers/tinyusb/src/common/tusb_fifo.c \
 Drivers/tinyusb/src/tusb.c \
 Drivers/tinyusb/src/device/usbd.c \

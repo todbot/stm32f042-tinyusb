@@ -99,6 +99,26 @@ The Makefile assumes you have the following installed
 - [dfu-util](https://dfu-util.sourceforge.net/) (optional)
 
 
+### Testing
+
+I like using [`hidapitester`](https://github.com/todbot/hidapitester) to test
+USB HID devices:
+
+- Send a 40-byte Output report: 
+```sh
+hidapitester --vidpid CAFE:1234 -l 40 --open --send-output 0x76,0x10,0x20,0x30 
+```
+
+- Send a 40-byte Feature report on reportId 0x76:
+```sh
+ hidapitester --vidpid CAFE:1234 -l 41 --open --send-feature 0x76,0x10,0x20,0x30,0x40,0x50,0x55,0xAA 
+```
+
+- Receive a 40-byte Feature report on reportId 0x75:
+```
+hidapitester --vidpid CAFE:1234 -l 40 --open --read-feature 0x75
+```
+
 ###  References:
   - https://blog.peramid.es/posts/2024-12-31-arm.html
   - https://github.com/carrotIndustries/usbkvm/tree/main/fw/usbkvm
