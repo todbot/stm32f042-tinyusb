@@ -51,6 +51,11 @@ Steps:
    git submodule add --depth 1 https://github.com/STMicroelectronics/cmsis-core.git
 
 
+- Modify Makefile to point to slightly new locations for the CMSIS and HAL files.
+  Mostly this is serach & replace of: 
+  - `Drivers/STM32F0xx_HAL_Driver` to `Drivers/stm32f0xx-hal-driver`
+  - `Drivers/CMSIS/Include` to `Drivers/cmsis-device-f0` and `Drivers/cmsis-core`
+
 ### Wiring
 
 The Nucleo-F042K6 board does not come with a USB connector on the USB pins.
