@@ -60,7 +60,7 @@ Steps:
    ```
 
 - Modify Makefile to point to slightly new locations for the CMSIS and HAL files.
-  Mostly this is serach & replace of: 
+  Mostly this is search & replace in `C_SOURCES` and `INCLUDES` of: 
   - `Drivers/STM32F0xx_HAL_Driver` to `Drivers/stm32f0xx-hal-driver`
   - `Drivers/CMSIS/Include` to `Drivers/cmsis-device-f0` and `Drivers/cmsis-core`
 
