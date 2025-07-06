@@ -150,18 +150,11 @@ int main(void)
     /* USER CODE BEGIN 3 */
     
     tud_task();
-
-   if (HAL_GetTick() - last_millis > 500) {
-     last_millis = HAL_GetTick();
-     printf("looooppp %ld\r\n", last_millis);
-   }
     
-    
-    //HAL_GPIO_WritePin(LED_HID_GPIO_Port, LED_HID_Pin,
-    //                  get_led(I2C_LED_HID, tud_hid_n_ready(ITF_NUM_KEYBOARD)));
-    //HAL_GPIO_WritePin(LED_HDMI_GPIO_Port, LED_HDMI_Pin,
-    //                  get_led(I2C_LED_HDMI, 0));
-
+    if (HAL_GetTick() - last_millis > 500) {
+      last_millis = HAL_GetTick();
+      printf("looooppp %ld\r\n", last_millis);
+    }
  
   }
   /* USER CODE END 3 */
