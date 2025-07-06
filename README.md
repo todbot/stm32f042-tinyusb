@@ -84,7 +84,8 @@ and compile:
 git clone https://github.com/todbot/stm32f042_tinyusb
 cd stm32f042_tinyusb
 git submodule update --init
-make
+make -j4 
+make flash
 ```
 
 The Makefile assumes you have the following installed
