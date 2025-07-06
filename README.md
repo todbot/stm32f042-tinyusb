@@ -51,7 +51,8 @@ Steps:
 
 - Remove everything in the "Drivers" directory and add the following git submodules:
   ```sh
-   rm -r Drivers/*
+   rm -rf Drivers 
+   mkdir Drivers && cd Drivers
    git submodule add --depth 1 https://github.com/STMicroelectronics/stm32f0xx-hal-driver.git
    git submodule add --depth 1 https://github.com/STMicroelectronics/cmsis-device-f0.git
    git submodule add --depth 1 https://github.com/STMicroelectronics/cmsis-core.git
