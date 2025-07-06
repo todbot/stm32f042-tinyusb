@@ -81,8 +81,12 @@ uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
   (void)buffer;
   (void)reqlen;
 
-  printf("GET REPORT: rId:%d reqlen:%d\r\n", report_id, reqlen);
-  return 0;
+  printf("GET REPORT: rId:%d type:%d reqlen:%d\r\n", report_id, report_type, reqlen);
+  for( int i=0; i<reqlen; i++) {
+    buffer[i] = i;  // return back some data
+  }
+  return reqlen;  // we filled it up
+  //return 0;
 }
 
 // Invoked when received SET_REPORT control request or
@@ -91,7 +95,12 @@ void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
                            hid_report_type_t report_type, uint8_t const *buffer,
                            uint16_t bufsize)
 {
-  printf("SET REPORT: rId:%d bufsize:%d\r\n", report_id, bufsize);
+  printf("SET REPORT: rId:%d type:%d bufsize:%d\r\n", report_id, report_type, bufsize);
+  printf("report: ");
+  for(int i=0; i<bufsize; i++) {
+    printf("%02X ", buffer[i]);
+  }
+  printf("\r\n");
 }
 
 
@@ -150,7 +159,7 @@ int main(void)
     
     tud_task();
     
-    if (HAL_GetTick() - last_millis > 500) {
+    if (HAL_GetTick() - last_millis > 1000) {
       last_millis = HAL_GetTick();
       printf("looooppp %ld\r\n", last_millis);
     }
